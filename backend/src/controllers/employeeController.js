@@ -6,7 +6,7 @@ export const getEmployees = async (req, res) => {
 
         res.status(200).json({
             message:"Employees fetched successfully",
-            employees,
+            data:employees,
         });
     } catch (error) {
         res.status(500).json({
@@ -21,7 +21,7 @@ export const createEmployee = async (req, res) => {
 
         res.status(201).json({
             message:"Employee created successfully",
-            employee,
+            data:employee,
         });
     } catch (error) {
         res.status(500).json({
@@ -46,7 +46,7 @@ export const updateEmployee = async (req, res) => {
 
         res.status(200).json({
             message: "Employee updated successfully",
-            employee,
+            data:employee,
         });
     } catch (error) {
         res.status(500).json({

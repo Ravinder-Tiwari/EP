@@ -4,9 +4,7 @@ import {
 } from "react";
 
 import SearchBar from "../components/SearchBar";
-
 import EmployeeList from "../components/EmployeeList";
-
 import EmployeeForm from "../components/EmployeeForm";
 
 import {
@@ -16,37 +14,46 @@ import {
 } from "../services/Employee.Service";
 
 const Home = () => {
+  // Stores all employees received from the API
   const [employees, setEmployees] =
     useState([]);
 
+  // Search input value
   const [searchTerm, setSearchTerm] =
     useState("");
 
+  // Employee currently being edited
   const [
     selectedEmployee,
     setSelectedEmployee,
   ] = useState(null);
 
+  // Controls form visibility
   const [isFormOpen, setIsFormOpen] =
     useState(false);
 
+  // Page loader while fetching data
   const [loading, setLoading] =
     useState(true);
 
+  // Fetch employee list from backend
   const fetchEmployees =
     async () => {
       const res =
         await getEmployees();
 
-      setEmployees(res.data);
+      console.log(res);
 
+      setEmployees(res.data);
       setLoading(false);
     };
 
+  // Load employees when page mounts
   useEffect(() => {
     fetchEmployees();
   }, []);
 
+  // Handles both add and update actions
   const handleSave =
     async (data) => {
       if (
@@ -60,8 +67,10 @@ const Home = () => {
         await addEmployee(data);
       }
 
+      // Refresh list after successful save
       fetchEmployees();
 
+      // Reset form state
       setSelectedEmployee(
         null
       );
@@ -69,6 +78,7 @@ const Home = () => {
       setIsFormOpen(false);
     };
 
+  // Filter employees by name or department
   const filteredEmployees =
     employees.filter(
       (employee) =>
@@ -109,6 +119,7 @@ const Home = () => {
 
         <button
           onClick={() => {
+            // Open empty form for new employee
             setSelectedEmployee(
               null
             );
@@ -142,6 +153,7 @@ const Home = () => {
           filteredEmployees
         }
         onEdit={(employee) => {
+          // Open form with existing employee data
           setSelectedEmployee(
             employee
           );

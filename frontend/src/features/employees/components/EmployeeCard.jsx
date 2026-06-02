@@ -22,7 +22,7 @@ const EmployeeCard = ({
         onClick={() =>
           onEdit(employee)
         }
-        className="bg-blue-500 text-white px-4 py-2 mt-3 rounded"
+        className="bg-green-700 text-white px-4 py-2 mt-3 rounded"
       >
         Edit
       </button>

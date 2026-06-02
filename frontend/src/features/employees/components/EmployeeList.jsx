@@ -4,6 +4,7 @@ const EmployeeList = ({
   employees,
   onEdit,
 }) => {
+  // Show message when no records match
   if (!employees.length) {
     return (
       <p>No employees found</p>
